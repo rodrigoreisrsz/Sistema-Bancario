@@ -3,11 +3,11 @@ import java.util.UUID;
 
 public class Cliente {
 
-    long saldo = 0;
-    String nome;
-    String senha;
-    UUID uuid;
-    boolean logado = false;
+    private long saldo = 0;
+    private String nome;
+    private String senha;
+    private UUID uuid;
+    private boolean logado = false;
 
 
     void registrarCliente(Scanner scanner) {
@@ -35,5 +35,45 @@ public class Cliente {
         System.out.println("Saque efetuado! Novo saldo: " + this.saldo);
         return true;
 
+    }
+
+    public long getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(long saldo) {
+        this.saldo = saldo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
+    public boolean isLogado() {
+        return logado;
+    }
+
+    public void setLogado(boolean logado) {
+        this.logado = logado;
     }
 }
