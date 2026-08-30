@@ -18,14 +18,19 @@ public class Main {
 
             switch(opcao) {
                 case 1:
-                    scanner.nextLine();
-                    System.out.println("Digite o nome: ");
-                    String nome = scanner.nextLine();
-                    System.out.println("Digite a senha: ");
-                    String senha = scanner.nextLine();
-                    cliente.registrarCliente(nome, senha);
-                    System.out.println("Registrado com sucesso. Bem vindo " + nome);
-                    break;
+                    try {
+                        scanner.nextLine();
+                        System.out.println("Digite o nome: ");
+                        String nome = scanner.nextLine();
+                        System.out.println("Digite a senha: ");
+                        String senha = scanner.nextLine();
+                        cliente.registrarCliente(nome, senha);
+                        System.out.println("Registrado com sucesso. Bem vindo " + nome);
+                        break;
+                    }catch (CadstroException e){
+                        System.out.println("Erro: " + e.getMessage() + " tente novamente.");
+                        break;
+                    }
 
                 case 2:
                     try {

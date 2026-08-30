@@ -1,5 +1,6 @@
 package model.entities;
 
+import exceptions.CadstroException;
 import exceptions.LoginInvalidoException;
 
 import java.util.Scanner;
@@ -15,6 +16,10 @@ public class Cliente {
 
 
    public void registrarCliente(String nome, String senha) {
+       int caracteres = 3;
+       if(nome.isEmpty() || (nome.length() < caracteres)){
+            throw new CadstroException("Caracteres insuficientes.");
+       }
         this.nome = nome;
         this.senha = senha;
         this.uuid = uuid.randomUUID();
