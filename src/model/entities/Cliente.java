@@ -1,3 +1,7 @@
+package model.entities;
+
+import exceptions.LoginInvalidoException;
+
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -10,23 +14,31 @@ public class Cliente {
     private boolean logado = false;
 
 
-    void registrarCliente(Scanner scanner) {
-        System.out.println("Digite seu nome: ");
-        this.nome = scanner.next();
-
-        System.out.println("Digite seu senha: ");
-        this.senha = scanner.next();
-
-        this.uuid = UUID.randomUUID();
-
-        System.out.println("Registrado com sucesso. Bem vindo " + nome);
+   public void registrarCliente(String nome, String senha) {
+        this.nome = nome;
+        this.senha = senha;
+        this.uuid = uuid.randomUUID();
 
     }
-    void depositar(long valor){
+
+    public void login(String nome, String senha) {
+       if(getNome() == null || getSenha() == null){
+           throw new LoginInvalidoException("Login invalido");
+       }
+        if (!nome.equals(getNome()) || !senha.equals(getSenha())) {
+            throw new LoginInvalidoException("Login invalido");
+        }
+        else{
+            this.logado = true;
+            System.out.println("Login efetuado.");
+        }
+
+    }
+    public void depositar(long valor){
         this.saldo += valor;
         System.out.println("Deposito concluído! Novo saldo: " + this.saldo);
     }
-    boolean sacar(long valor){
+    public boolean sacar(long valor){
         if(valor > this.saldo){
             System.out.println("Saldo insuficiente!");
             return false;

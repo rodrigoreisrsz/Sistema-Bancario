@@ -1,3 +1,8 @@
+import exceptions.CadstroException;
+import exceptions.LoginInvalidoException;
+
+import model.entities.Cliente;
+import model.entities.Cliente;
 import java.util.Scanner;
 
 
@@ -6,35 +11,40 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Cliente cliente = new Cliente();
 
-        while (true) {
+        while(true){
             Menu.mostrarMenu();
-            int resposta = scanner.nextInt();
-            if (resposta < 1 || resposta > 6) {
-                System.out.println("Opção invalida");
-            }
-            switch (resposta) {
+            System.out.println("Digite a opção: ");
+            int opcao = scanner.nextInt();
+
+            switch(opcao) {
                 case 1:
-                    cliente.registrarCliente(scanner);
+                    scanner.nextLine();
+                    System.out.println("Digite o nome: ");
+                    String nome = scanner.nextLine();
+                    System.out.println("Digite a senha: ");
+                    String senha = scanner.nextLine();
+                    cliente.registrarCliente(nome, senha);
+                    System.out.println("Registrado com sucesso. Bem vindo " + nome);
                     break;
+
                 case 2:
-                    Metodos.login(cliente);
-                    Autenticacao.fazerLogin(scanner, cliente.getNome(), cliente.getSenha());
-                    break;
+                    try {
+                        scanner.nextLine();
+                        System.out.println("Digite o nome: ");
+                        String nomeLogin = scanner.nextLine();
+                        System.out.println("Digite a senha: ");
+                        String senhaLogin = scanner.nextLine();
+                        cliente.login(nomeLogin, senhaLogin);
+                        break;
+                    } catch (LoginInvalidoException e) {
+                        System.out.println("Erro: " + e.getMessage() + " tente novamente.");
+                        break;
+                    }
                 case 3:
-                    Metodos.mostrarSaldo(cliente);
-                    break;
-                case 4:
-                    Metodos.depositar(cliente);
-                    break;
-                case 5:
-                    Metodos.sacar(cliente);
-                    break;
-                case 6:
-                    System.out.println("Volte sempre!");
-                    break;
-            }if(resposta == 6){
-                break;
             }
         }
+
+
+
     }
 }

@@ -19,7 +19,7 @@ O Bank Reis simula operações básicas de um banco: criação de conta, login, 
 ```
 src/
 ├── Main.java           → orquestra o fluxo do programa
-├── Cliente.java        → dados e regras do cliente
+├── model.entities.Cliente.java        → dados e regras do cliente
 ├── Autenticacao.java   → validação de login
 └── Menu.java           → exibição do menu
 ```
