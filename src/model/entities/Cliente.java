@@ -2,13 +2,14 @@ package model.entities;
 
 import exceptions.CadstroException;
 import exceptions.LoginInvalidoException;
+import exceptions.OperacaoInvalidaException;
 
 import java.util.Scanner;
 import java.util.UUID;
 
 public class Cliente {
 
-    private long saldo = 0;
+    private double saldo;
     private String nome;
     private String senha;
     private UUID uuid;
@@ -39,7 +40,24 @@ public class Cliente {
         }
 
     }
-    public void depositar(long valor){
+    public void mostrarSaldo(){
+       if(isLogado() == false){
+           throw new LoginInvalidoException("Efetue o login");
+       }
+       if(getSaldo() <= 0){
+           System.out.println("Saldo nulo ou negativo");
+       }
+        System.out.println("Saldo atual: " + getSenha());
+
+    }
+
+    public void depositar(double valor){
+       if(isLogado() == false){
+           throw new LoginInvalidoException("Efetue o login");
+       }
+       if(valor <= 0){
+           throw new OperacaoInvalidaException("Não é possivel depositar um valor nulo ou negativo");
+       }
         this.saldo += valor;
         System.out.println("Deposito concluído! Novo saldo: " + this.saldo);
     }
@@ -54,11 +72,11 @@ public class Cliente {
 
     }
 
-    public long getSaldo() {
+    public double getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(long saldo) {
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 

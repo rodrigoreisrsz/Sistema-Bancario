@@ -1,6 +1,7 @@
 import exceptions.CadstroException;
 import exceptions.LoginInvalidoException;
 
+import exceptions.OperacaoInvalidaException;
 import model.entities.Cliente;
 import model.entities.Cliente;
 import java.util.Scanner;
@@ -46,6 +47,25 @@ public class Main {
                         break;
                     }
                 case 3:
+                    try{
+                        cliente.mostrarSaldo();
+                        break;
+                    }catch(LoginInvalidoException e){
+                        System.out.println("Erro: " + e.getMessage());
+                        break;
+                    }
+                case 4:
+                    try{
+                        System.out.println("Digite o valor do déposito: ");
+                        double valor = scanner.nextDouble();
+                        cliente.depositar(valor);
+                        break;
+
+                    }catch(OperacaoInvalidaException e){
+                        System.out.print("Erro: " + e.getMessage());
+                        break;
+                    }
+
             }
         }
 
