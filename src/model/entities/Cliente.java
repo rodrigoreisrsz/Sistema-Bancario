@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.UUID;
 
 public class Cliente {
-
+Scanner scanner = new Scanner(System.in);
     private double saldo;
     private String nome;
     private String senha;
@@ -47,16 +47,20 @@ public class Cliente {
        if(getSaldo() <= 0){
            System.out.println("Saldo nulo ou negativo");
        }
-        System.out.println("Saldo atual: " + getSenha());
+        System.out.println("Saldo atual: " + getSaldo());
 
     }
 
-    public void depositar(double valor){
-       if(isLogado() == false){
+    public void depositar(){
+        double valor;
+       if(isLogado() != true){
            throw new LoginInvalidoException("Efetue o login");
-       }
-       if(valor <= 0){
-           throw new OperacaoInvalidaException("Não é possivel depositar um valor nulo ou negativo");
+       }else{
+           System.out.println("Digite o valor do déposito: ");
+           valor = scanner.nextDouble();
+           if(valor <= 0){
+               throw new OperacaoInvalidaException("Não é possivel depositar um valor nulo ou negativo");
+           }
        }
         this.saldo += valor;
         System.out.println("Deposito concluído! Novo saldo: " + this.saldo);

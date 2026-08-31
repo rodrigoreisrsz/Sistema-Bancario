@@ -56,13 +56,14 @@ public class Main {
                     }
                 case 4:
                     try{
-                        System.out.println("Digite o valor do déposito: ");
-                        double valor = scanner.nextDouble();
-                        cliente.depositar(valor);
+                        cliente.depositar();
                         break;
 
                     }catch(OperacaoInvalidaException e){
-                        System.out.print("Erro: " + e.getMessage());
+                        System.out.println("Erro: " + e.getMessage());
+                        break;
+                    }catch (LoginInvalidoException e){
+                        System.out.println("Erro: " + e.getMessage());
                         break;
                     }
 
