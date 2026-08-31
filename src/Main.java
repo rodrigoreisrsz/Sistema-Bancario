@@ -2,6 +2,7 @@ import exceptions.CadstroException;
 import exceptions.LoginInvalidoException;
 
 import exceptions.OperacaoInvalidaException;
+import model.entities.Banco;
 import model.entities.Cliente;
 import model.entities.Cliente;
 import java.util.Scanner;
@@ -10,7 +11,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Cliente cliente = new Cliente();
+        Banco banco = new Banco();
+       // Cliente cliente = new Cliente();
 
         while(true){
             Menu.mostrarMenu();
@@ -25,7 +27,8 @@ public class Main {
                         String nome = scanner.nextLine();
                         System.out.println("Digite a senha: ");
                         String senha = scanner.nextLine();
-                        cliente.registrarCliente(nome, senha);
+                        Cliente cliente = new Cliente(nome, senha);
+                        banco.cadastrar(cliente);
                         System.out.println("Registrado com sucesso. Bem vindo " + nome);
                         break;
                     }catch (CadstroException e){
@@ -40,7 +43,7 @@ public class Main {
                         String nomeLogin = scanner.nextLine();
                         System.out.println("Digite a senha: ");
                         String senhaLogin = scanner.nextLine();
-                        cliente.login(nomeLogin, senhaLogin);
+                       // cliente.login(nomeLogin, senhaLogin);
                         break;
                     } catch (LoginInvalidoException e) {
                         System.out.println("Erro: " + e.getMessage() + " tente novamente.");
@@ -48,7 +51,7 @@ public class Main {
                     }
                 case 3:
                     try{
-                        cliente.mostrarSaldo();
+                       // cliente.mostrarSaldo();
                         break;
                     }catch(LoginInvalidoException e){
                         System.out.println("Erro: " + e.getMessage());
@@ -56,7 +59,9 @@ public class Main {
                     }
                 case 4:
                     try{
-                        cliente.depositar();
+                        System.out.println("Digite o valor do déposito: ");
+                        double valor = scanner.nextDouble();
+                        //cliente.depositar(valor);
                         break;
 
                     }catch(OperacaoInvalidaException e){

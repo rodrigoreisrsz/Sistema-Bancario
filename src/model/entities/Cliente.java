@@ -14,16 +14,19 @@ Scanner scanner = new Scanner(System.in);
     private String senha;
     private UUID uuid;
     private boolean logado = false;
+    private Banco banco;
 
-
-   public void registrarCliente(String nome, String senha) {
-       int caracteres = 3;
-       if(nome.isEmpty() || (nome.length() < caracteres)){
-            throw new CadstroException("Caracteres insuficientes.");
-       }
+    public Cliente(String nome, String senha) {
         this.nome = nome;
         this.senha = senha;
-        this.uuid = uuid.randomUUID();
+        this.logado = false;
+        this.uuid = UUID.randomUUID();
+        this.saldo = 0;
+    }
+
+    public void registrarCliente(String nome, String senha) {
+       new ClienteValidators();
+       // banco.cadastrar();
 
     }
 
@@ -51,13 +54,12 @@ Scanner scanner = new Scanner(System.in);
 
     }
 
-    public void depositar(){
-        double valor;
+    public void depositar(double valor){
+
        if(isLogado() != true){
            throw new LoginInvalidoException("Efetue o login");
        }else{
-           System.out.println("Digite o valor do déposito: ");
-           valor = scanner.nextDouble();
+
            if(valor <= 0){
                throw new OperacaoInvalidaException("Não é possivel depositar um valor nulo ou negativo");
            }
