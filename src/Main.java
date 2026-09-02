@@ -43,7 +43,7 @@ public class Main {
                         String nomeLogin = scanner.nextLine();
                         System.out.println("Digite a senha: ");
                         String senhaLogin = scanner.nextLine();
-                       // cliente.login(nomeLogin, senhaLogin);
+                        //banco.login(nomeLogin, senhaLogin);
                         break;
                     } catch (LoginInvalidoException e) {
                         System.out.println("Erro: " + e.getMessage() + " tente novamente.");

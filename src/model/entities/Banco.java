@@ -10,4 +10,9 @@ public class Banco {
         clientes.add(cliente);
 
     }
+    public void login(Cliente cliente){
+        clientes.indexOf(cliente);
+    }
+
+
 }
