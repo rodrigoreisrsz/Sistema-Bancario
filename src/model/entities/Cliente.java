@@ -9,6 +9,7 @@ import java.util.UUID;
 
 public class Cliente {
 Scanner scanner = new Scanner(System.in);
+ClienteValidators validator = new ClienteValidators();
     private double saldo;
     private String nome;
     private String senha;
@@ -31,16 +32,10 @@ Scanner scanner = new Scanner(System.in);
     }
 
     public void login(String nome, String senha) {
-       if(getNome() == null || getSenha() == null){
-           throw new LoginInvalidoException("Login invalido");
-       }
-        if (!nome.equals(getNome()) || !senha.equals(getSenha())) {
-            throw new LoginInvalidoException("Login invalido");
-        }
-        else{
-            this.logado = true;
-            System.out.println("Login efetuado.");
-        }
+        validator.validateNome(nome);
+        this.logado = true;
+        System.out.println("Login efetuado.");
+
 
     }
     public void mostrarSaldo(){
